@@ -1,0 +1,20 @@
+body {
+  padding: 15px;
+}
+/* Write your CSS here */
+.user-inputs-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 5px;
+}
+
+.main-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+img {
+  height: 200px;
+}

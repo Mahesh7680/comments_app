@@ -1,0 +1,47 @@
+.amber {
+  background-color: #f59e0b;
+}
+
+.blue {
+  background-color: #0b69ff;
+}
+
+.orange {
+  background-color: #f97316;
+}
+
+.emerald {
+  background-color: #10b981;
+}
+
+.teal {
+  background-color: #14b8a6;
+}
+
+.red {
+  background-color: #b91c1c;
+}
+
+.light-blue {
+  background-color: #0ea5e9;
+}
+
+/* Write your CSS here */
+.person-first-letter {
+  background-color: #b91c1c;
+  text-align: center;
+  padding: 5px;
+  border-radius: 45%;
+}
+.like-button {
+  height: 20px;
+}
+.delete-button {
+  height: 20px;
+}
+
+.like-delete-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
