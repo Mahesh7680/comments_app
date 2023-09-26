@@ -25,7 +25,7 @@ const fakeData = [
 ]
 
 class Comments extends Component {
-  state = {initialFakeData: fakeData, name: '', comment: ''}
+  state = {initialFakeData: [], name: '', comment: '', count: 0}
 
   onUsername = event => {
     this.setState({name: event.target.value})
@@ -37,7 +37,7 @@ class Comments extends Component {
 
   onCommentSubmit = event => {
     event.preventDefault()
-    const {name, comment} = this.state
+    const {name, comment, count} = this.state
     this.setState(prevState => ({
       initialFakeData: [
         ...prevState.initialFakeData,
@@ -49,20 +49,20 @@ class Comments extends Component {
           isLiked: false,
         },
       ],
+      count: prevState.count + 1,
     }))
   }
 
   onDelete = id => {
-    console.log(id)
     const {initialFakeData} = this.state
     const filteredData = initialFakeData.filter(each => each.id !== id && each)
-    this.setState({
+    this.setState(prevState => ({
       initialFakeData: filteredData,
-    })
+      count: prevState.count - 1,
+    }))
   }
 
   onLikeButton = id => {
-    const {initialFakeData} = this.state
     this.setState(prevState => ({
       initialFakeData: prevState.initialFakeData.map(each => {
         if (each.id === id) {
@@ -74,13 +74,12 @@ class Comments extends Component {
   }
 
   render() {
-    const {initialFakeData, name, comment} = this.state
-    const count = initialFakeData.length
+    const {initialFakeData, name, comment, count} = this.state
     // console.log(formatDistanceToNow(new Date())) // less than a minute
     console.log(initialFakeData)
     return (
       <>
-        <form className="main-container" onClick={this.onCommentSubmit}>
+        <form className="main-container" onSubmit={this.onCommentSubmit}>
           <div className="user-inputs-container">
             <h1>Comments</h1>
             <p>Say something about 4.0 Technologies</p>
@@ -89,15 +88,15 @@ class Comments extends Component {
               value={name}
               placeholder="Your Name"
               onChange={this.onUsername}
-              required
+              //   required
             />
             <textarea
               cols="55"
               rows="8"
               value={comment}
-              placeholder="Type Comment"
+              placeholder="Your Comment"
               onChange={this.onAddComment}
-              required
+              //   required
             />
             <button
               type="submit"
@@ -112,7 +111,7 @@ class Comments extends Component {
           />
         </form>
         <hr />
-        <div>
+        <ul>
           <p>{count} comments</p>
           {initialFakeData.map(eachItem => (
             <CommentItem
@@ -123,8 +122,7 @@ class Comments extends Component {
               formatDistanceToNow={formatDistanceToNow}
             />
           ))}
-          <></>
-        </div>
+        </ul>
       </>
     )
   }
